@@ -12,9 +12,9 @@ class exl():
         self.sheet["B2"]=" Password "
         self.sheet["C3"]=" email id "
 
-    def add_data(self,username:str,password:str , mail:str):
+    def add_data(self,username:str,password:str):# , mail:str):
         self.sheet["A"+str(self.sheet.max_row+1)]=username
         self.sheet["B"+str(self.sheet.max_row+1)]=password
-        self.sheet["C"+str(self.sheet.max_row+1)]=mail
+        #self.sheet["C"+str(self.sheet.max_row+1)]=mail
 
         self.wb.save('reg.xlsx')
