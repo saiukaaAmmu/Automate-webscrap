@@ -1,20 +1,26 @@
 import openpyxl as o
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 
 
 class exl():
     #def __init__(self):
 
     def user_create_workbook(self):
-        self.wb=Workbook()
+        #self.wb=Workbook()
+        try:
+            self.wb = load_workbook("reg.xlsx")
+        except:
+            self.wb = Workbook()
         self.sheet=self.wb.active
         self.sheet["A1"]=" User Name "
-        self.sheet["B2"]=" Password "
-        self.sheet["C3"]=" email id "
+        self.sheet["B1"]=" Password "
+        self.sheet["C1"]=" email id "
 
     def add_data(self,username:str,password:str, mail:str):
-        self.sheet["A"+str(self.sheet.max_row+1)]=username
-        self.sheet["B"+str(self.sheet.max_row+1)]=password
-        self.sheet["C"+str(self.sheet.max_row+1)]=mail
+        __col_num = str(self.sheet.max_row+1)
+        self.sheet["A"+__col_num]=username
+        self.sheet["B"+__col_num]=password
+        self.sheet["C"+__col_num]=mail
 
         self.wb.save('reg.xlsx')
+        return True

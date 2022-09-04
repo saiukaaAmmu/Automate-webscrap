@@ -5,7 +5,8 @@ import os
 from exl import exl
 
 # Designing window for registration
-excel1=exl().user_create_workbook()
+excel1=exl()
+excel1.user_create_workbook()
 def register():
     global register_screen
     register_screen = Toplevel(main_screen)
@@ -79,18 +80,19 @@ def register_user():
     password_info = password.get()
     mail_info = mail.get()
 
-    file = open(username_info, "w")
-    file.write(username_info + "\n")
-    file.write(password_info + "\n")
-    file.write(mail_info)
-    file.close()
-    #excel1.add_data(username_info,password_info,mail_info)
+    # file = open(username_info, "w")
+    # file.write(username_info + "\n")
+    # file.write(password_info + "\n")
+    # file.write(mail_info)
+    # file.close()
+    __token = excel1.add_data(username_info,password_info,mail_info)
 
     username_entry.delete(0, END)
     password_entry.delete(0, END)
     mail_entry.delete(0,END)
 
-    Label(register_screen, text="Registration Success", fg="green", font=("calibri", 11)).pack()
+    if __token:
+        Label(register_screen, text="Registration Success", fg="green", font=("calibri", 11)).pack()
 
 
 # Implementing event on login button
